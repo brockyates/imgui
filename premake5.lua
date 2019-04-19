@@ -29,5 +29,17 @@ project "ImGui"
              "IMGUI_API=__declspec( dllexport )"
         }
 
-    filter { "system:windows", "configurations:Release" }
-        buildoptions "/MT"
+    filter "configurations:Debug"
+        defines "HZ_DEBUG_ENABLED"
+        runtime "Debug"
+        symbols "On"
+
+    filter "configurations:Release"
+        defines "HZ_RELEASE_ENABLED"
+        runtime "Release"
+        optimize "On"
+
+    filter "configurations:Dist"
+        defines "HZ_DIST_ENABLED"
+        runtime "Release"
+        optimize "On"
