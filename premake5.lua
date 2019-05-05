@@ -23,6 +23,16 @@ project "ImGui"
         systemversion "latest"
         cppdialect "C++17"
         staticruntime "On"
-        
-    filter { "system:windows", "configurations:Release" }
-        buildoptions "/MT"
+
+        defines
+        {
+             "IMGUI_API=__declspec( dllexport )"
+        }
+
+    filter "configurations:Debug"
+        runtime "Debug"
+        symbols "On"
+
+    filter "configurations:Release"
+        runtime "Release"
+        optimize "On"
